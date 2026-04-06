@@ -35,9 +35,8 @@ public class BaseTest {
             WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             options.addArguments("--headless=new");
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--force-device-scale-factor=0.95");
+            options.addArguments("--window-size=1200,800");
+            options.addArguments("--force-device-scale-factor=0.8");  // 🔥 reduces zoom
 
             driver = new ChromeDriver(options);
         } else {
