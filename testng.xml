@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/Apollo/IdeaProjects/Ecommerce-Automation-Framework">
+        <classes>
+            <class name="tests.SubmitOrderTest">
+                <methods><include name="submitOrderTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
