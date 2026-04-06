@@ -33,8 +33,10 @@ public class BaseTest {
 
         if (browserName.equalsIgnoreCase("chrome")) {
             WebDriverManager.chromedriver().setup();
-
             ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless=new");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--force-device-scale-factor=0.95");
 
             driver = new ChromeDriver(options);
