@@ -16,9 +16,16 @@ public abstract class AbstartctComponents {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void click(By locator) {
-        waitForElementToBeClickable(locator);
-        driver.findElement(locator).click();
+    public void click(By findBy) {
+        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", element);
+        wait.until(ExpectedConditions.elementToBeClickable(findBy));
+
+        try {
+            element.click();
+        } catch (ElementClickInterceptedException e) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
     }
 
     public void safeClick(WebElement element) {
