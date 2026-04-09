@@ -2,8 +2,10 @@ package pages;
 
 import abstractComponents.AbstartctComponents;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.ElementClickInterceptedException;
 
 import java.util.List;
 
@@ -39,7 +41,17 @@ public class ProductCataloguePage extends AbstartctComponents {
                     .anyMatch(expected -> expected.equalsIgnoreCase(currentProductName));
 
             if (isRequiredProduct) {
-                productCard.findElement(addToCartButton).click();
+                WebElement addButton = productCard.findElement(addToCartButton);
+
+                ((JavascriptExecutor) driver).executeScript(
+                        "arguments[0].scrollIntoView({block: 'center'});", addButton);
+
+                try {
+                    addButton.click();
+                } catch (ElementClickInterceptedException e) {
+                    ((JavascriptExecutor) driver).executeScript("arguments[0].click();", addButton);
+                }
+
                 waitForElementToAppear(toastMessage);
                 waitForElementToDisappear(spinner);
             }
