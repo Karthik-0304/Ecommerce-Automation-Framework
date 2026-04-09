@@ -32,6 +32,16 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+# IDE files
+.idea/
+*.iml
+
+# Build
+target/
+
+# Reports
+reports/
+
 ### VS Code ###
 .vscode/
 
